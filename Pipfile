@@ -1,0 +1,31 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+psycopg2-binary = "*"
+uvicorn = "*"
+SQLAlchemy = "*"
+tweepy = "*"
+
+[dev-packages]
+black = "*"
+ipython = "*"
+isort = "*"
+mypy = "*"
+pylint = "*"
+pyproject-flake8 = "*"
+types-requests = "*"
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+fix = "sh -cex 'pipenv run format && pipenv run lint'"
+format = "sh -cex 'pipenv run format_isort'"
+format_isort = "pipenv run isort api/ utils/ --check-only --diff"
+lint = "sh -cex 'pipenv run lint_pylint && pipenv run lint_mypy'"
+lint_pylint = "pipenv run pylint api/ utils/ --extension-pkg-whitelist='pydantic' --score=n"
+lint_mypy = "pipenv run mypy api/ utils/ --no-error-summary --show-error-codes"
