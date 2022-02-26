@@ -1,9 +1,9 @@
-# Todays Mazai
+# TodaysMazai
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/Le96/todays-mazai/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/Le96/todays-mazai/actions/workflows/ci.yaml)
 
-Python repository template using pipenv.
+Be the Monster Energy addict. Version 2.
 
 ## Requirements
 
