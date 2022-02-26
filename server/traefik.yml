@@ -1,0 +1,12 @@
+api:
+  dashboard: true
+  insecure: true # false on production
+entryPoints:
+  http:
+    address: :80
+  traefik:
+    address: :8080
+log:
+  level: INFO # DEBUG, INFO, WARN, ERROR, FATAL, PANIC
+providers:
+  docker: {}
