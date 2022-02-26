@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -9,7 +9,7 @@ import {
   Drawer,
   IconButton,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   ThemeProvider,
@@ -29,6 +29,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '../components/AppBar';
 import DrawerHeader from '../components/DrawerHeader';
 import Main, { drawerWidth } from '../components/Main';
+import LoginDialog from '../components/dialog/LoginDialog';
 
 import About from './About';
 import Latest from './Latest';
@@ -46,9 +47,12 @@ const checkDarkMode = () => {
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(checkDarkMode);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [open, setOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [page, setPage] = useState('Top');
+
+  const navigate = useNavigate();
 
   const lightTheme = createTheme();
   const darkTheme = createTheme({ palette: { mode: 'dark' } });
@@ -66,12 +70,17 @@ export default function App() {
     setDarkMode(!darkMode);
   };
 
-  const handleOpen = () => {
-    setOpen(!open);
+  const handleDrawerOpen = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
+  const handleModalOpen = () => {
+    setDialogOpen(!dialogOpen);
   };
 
   const handlePage = (newPage) => {
     setPage(newPage);
+    navigate(newPage.toLowerCase(), { replace: true });
   };
 
   const subPages = [
@@ -85,9 +94,16 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar color="success" open={open} position="fixed">
+        <AppBar color="success" open={drawerOpen} position="fixed">
           <Toolbar>
-            <IconButton aria-label="menu" color="inherit" edge="start" onClick={handleOpen} size="large" sx={{ mr: 1, ...(open && { display: 'none' }) }}>
+            <IconButton
+              aria-label="menu"
+              color="inherit"
+              edge="start"
+              onClick={handleDrawerOpen}
+              size="large"
+              sx={{ mr: 1, ...(drawerOpen && { display: 'none' }) }}
+            >
               <MenuIcon />
             </IconButton>
             <Typography component="div" variant="h5" sx={{ mr: 1, flexGrow: 1 }}>
@@ -96,14 +112,14 @@ export default function App() {
             <IconButton color="inherit" onClick={handleDarkMode} sx={{ ml: 1 }}>
               {modeChangeIcon}
             </IconButton>
-            <Button color="inherit">Login</Button>
+            <Button color="inherit" onClick={handleModalOpen}>Login</Button>
           </Toolbar>
         </AppBar>
         <Toolbar />
       </Box>
       <Drawer
         anchor="left"
-        open={open}
+        open={drawerOpen}
         variant="persistent"
         sx={{
           flexShrink: 0,
@@ -115,31 +131,37 @@ export default function App() {
         }}
       >
         <DrawerHeader>
-          <IconButton color="inherit" onClick={handleOpen}>
+          <IconButton color="inherit" onClick={handleDrawerOpen}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
           {subPages.map((subPage) => (
-            <ListItem button color="inherit" key={subPage.text} onClick={() => handlePage(subPage.text)} value={subPage.text}>
+            <ListItemButton
+              color="inherit"
+              key={subPage.text}
+              onClick={() => handlePage(subPage.text)}
+              selected={page === subPage.text}
+              value={subPage.text}
+            >
               <ListItemIcon>{subPage.icon}</ListItemIcon>
               <ListItemText>{subPage.text}</ListItemText>
-            </ListItem>
+            </ListItemButton>
           ))}
           <Divider />
-          <ListItem button color="inherit" onClick={handleDarkMode}>
+          <ListItemButton color="inherit" onClick={handleDarkMode}>
             <ListItemIcon>{modeChangeIcon}</ListItemIcon>
             <ListItemText>{`${darkMode ? 'Light' : 'Dark'} Mode`}</ListItemText>
-          </ListItem>
+          </ListItemButton>
         </List>
       </Drawer>
-      <Main open={open}>
-        <Box sx={{ m: 2 }}>
-          {page && subPages.map((subpage) => page === subpage.text && subpage.page)}
-          <Outlet />
+      <Main open={drawerOpen}>
+        <Box sx={{ mx: 2 }}>
+          <Outlet context={[darkMode]} />
         </Box>
       </Main>
+      <LoginDialog open={dialogOpen} setOpen={setDialogOpen} />
     </ThemeProvider>
   );
 }
