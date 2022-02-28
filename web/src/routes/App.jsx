@@ -48,7 +48,7 @@ const checkDarkMode = () => {
 export default function App() {
   const [darkMode, setDarkMode] = useState(checkDarkMode);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [page, setPage] = useState('Top');
 
@@ -61,9 +61,9 @@ export default function App() {
   const modeChangeIcon = darkMode ? <Brightness7Icon /> : <Brightness4Icon />;
 
   useEffect(() => {
-    if (!loading) return;
-    setLoading(false);
-  }, [loading]);
+    if (loaded) return;
+    setLoaded(true);
+  }, [loaded]);
 
   const handleDarkMode = () => {
     localStorage.setItem('darkMode', darkMode ? 'off' : 'on');
