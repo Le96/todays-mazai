@@ -32,8 +32,7 @@ def get_tweet(tweet_id: str, session: Session = Depends(get_session)):
 
 @router.get("/{tweet_id}/media", response_model=List[schemas.Medium], responses={404: {"model": schemas.ErrorMessage}})
 def get_tweet_media(tweet_id: str, session: Session = Depends(get_session)):
-    tweet = get_tweet(tweet_id, session)
-    return session.query(models.Medium).filter(models.Medium.tweet_id == tweet.id).all()
+    return get_tweet(tweet_id, session).media
 
 
 @router.post("", response_model=schemas.Tweet, responses={400: {"model": schemas.ErrorMessage}})

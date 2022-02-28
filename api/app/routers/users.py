@@ -27,8 +27,7 @@ def get_user(user_id: str, session: Session = Depends(get_session)):
 
 @router.get("/{user_id}/tweets", response_model=List[schemas.Tweet], responses={404: {"model": schemas.ErrorMessage}})
 def get_user_tweets(user_id: str, session: Session = Depends(get_session)):
-    user = get_user(user_id, session)
-    return session.query(models.Tweet).filter(models.Tweet.author_id == user.id).all()
+    return get_user(user_id, session).tweets
 
 
 @router.post("", response_model=schemas.User, responses={400: {"model": schemas.ErrorMessage}})
