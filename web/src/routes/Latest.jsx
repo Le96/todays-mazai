@@ -40,7 +40,7 @@ export default function Latest() {
       <Box sx={{ my: 1 }}>
         <Grid container spacing={2}>
           {media && tweets && users
-            && tweets.sort((a, b) => a.created_at - b.created_at).map((tweet) => {
+            && tweets.sort((a, b) => (a.created_at < b.created_at ? 1 : -1)).map((tweet) => {
               const author = users.find((user) => user.id === tweet.author_id);
               const medium = media.find((medium_) => medium_.tweet_id === tweet.id);
               return (
