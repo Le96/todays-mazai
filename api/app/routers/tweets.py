@@ -25,8 +25,9 @@ def get_latest_tweet(session: Session = Depends(get_session)):
 @router.get("/{tweet_id}", response_model=schemas.Tweet, responses={404: {"model": schemas.ErrorMessage}})
 def get_tweet(tweet_id: str, session: Session = Depends(get_session)):
     tweet = get_tweet_query(tweet_id, session)
+    if not tweet:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No such tweet exists")
-    return author
+    return tweet
 
 
 @router.get("/{tweet_id}/media", response_model=List[schemas.Medium], responses={404: {"model": schemas.ErrorMessage}})
