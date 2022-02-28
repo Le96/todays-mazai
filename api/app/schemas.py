@@ -42,6 +42,5 @@ class UserUpdateRequest(ORMModel):
     id: str
     username: Optional[str]
     name: Optional[str]
-    created_at: Optional[datetime]
     profile_image_url: str
     mentionable: Optional[bool]
