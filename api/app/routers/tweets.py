@@ -49,6 +49,9 @@ def create_tweet(data: schemas.Tweet, session: Session = Depends(get_session)):
 @router.delete("/{tweet_id}", response_model=schemas.Tweet, responses={404: {"model": schemas.ErrorMessage}})
 def delete_tweet(tweet_id: str, session: Session = Depends(get_session)):
     tweet = get_tweet(tweet_id, session)
+    medium: models.Medium
+    for medium in tweet.media:
+        session.delete(medium)
     session.delete(tweet)
     session.commit()
     return tweet

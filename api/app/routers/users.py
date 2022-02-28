@@ -56,6 +56,12 @@ def update_user(data: schemas.UserUpdateRequest, session: Session = Depends(get_
 @router.delete("/{user_id}", response_model=schemas.User, responses={404: {"model": schemas.ErrorMessage}})
 def delete_user(user_id: str, session: Session = Depends(get_session)):
     user = get_user(user_id, session)
+    tweet: models.Tweet
+    for tweet in user.tweets:
+        medium: models.Medium
+        for medium in tweet.media:
+            session.delete(medium)
+        session.delete(tweet)
     session.delete(user)
     session.commit()
     return user
