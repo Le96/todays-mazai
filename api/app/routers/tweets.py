@@ -24,8 +24,7 @@ def get_latest_tweet(session: Session = Depends(get_session)):
 
 @router.get("/{tweet_id}", response_model=schemas.Tweet, responses={404: {"model": schemas.ErrorMessage}})
 def get_tweet(tweet_id: str, session: Session = Depends(get_session)):
-    author = session.query(models.Tweet).filter(models.Tweet.id == tweet_id).one_or_none()
-    if not author:
+    tweet = get_tweet_query(tweet_id, session)
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No such tweet exists")
     return author
 
@@ -38,7 +37,7 @@ def get_tweet_media(tweet_id: str, session: Session = Depends(get_session)):
 
 @router.post("", response_model=schemas.Tweet, responses={400: {"model": schemas.ErrorMessage}})
 def create_tweet(data: schemas.Tweet, session: Session = Depends(get_session)):
-    if session.query(models.Tweet).filter(models.Tweet.id == data.id).one_or_none():
+    if get_tweet_query(data.id, session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="The tweet already exists")
     tweet = models.Tweet(**data.dict())
     session.add(tweet)
