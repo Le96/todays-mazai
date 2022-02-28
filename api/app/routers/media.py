@@ -32,8 +32,7 @@ def create_medium(data: schemas.Medium, session: Session = Depends(get_session))
     return medium
 
 
-@router.delete("/{media_key}", response_model=schemas.Medium)
-def delete_media(media_key: str, session: Session = Depends(get_session)):
+def delete_medium(media_key: str, session: Session = Depends(get_session)):
     medium = get_medium(media_key, session)
     session.delete(medium)
     session.commit()
