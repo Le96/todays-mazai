@@ -4,17 +4,13 @@ from sqlalchemy.orm import relationship
 from .database import Base
 
 
-class User(Base):
-    __tablename__ = "user"
+class Medium(Base):
+    __tablename__ = "medium"
 
-    id = Column(String(20), primary_key=True)
-    username = Column(String(15))
-    name = Column(String(50))
-    created_at = Column("createdAt", TIMESTAMP)
-    profile_image_url = Column("profileImageUrl", String(2083))
-    mentionable = Column(Boolean, default=False)
-
-    tweets = relationship("Tweet", backref="user")
+    media_key = Column(String(24), primary_key=True)
+    tweet_id = Column(String(20), ForeignKey("tweet.id"))
+    type = Column(String(12))
+    url = Column(String(2083))
 
 
 class Tweet(Base):
@@ -30,10 +26,14 @@ class Tweet(Base):
     media = relationship("Medium", backref="tweet")
 
 
-class Medium(Base):
-    __tablename__ = "medium"
+class User(Base):
+    __tablename__ = "user"
 
-    media_key = Column(String(24), primary_key=True)
-    tweet_id = Column(String(20), ForeignKey("tweet.id"))
-    type = Column(String(12))
-    url = Column(String(2083))
+    id = Column(String(20), primary_key=True)
+    username = Column(String(15))
+    name = Column(String(50))
+    created_at = Column("createdAt", TIMESTAMP)
+    profile_image_url = Column("profileImageUrl", String(2083))
+    mentionable = Column(Boolean, default=False)
+
+    tweets = relationship("Tweet", backref="user")
