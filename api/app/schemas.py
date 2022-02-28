@@ -4,6 +4,10 @@ from typing import Optional
 from pydantic import BaseModel
 
 
+class ErrorMessage(BaseModel):
+    detail: str
+
+
 class ORMModel(BaseModel):
     class Config:
         orm_mode = True
@@ -38,6 +42,5 @@ class UserUpdateRequest(ORMModel):
     id: str
     username: Optional[str]
     name: Optional[str]
-    created_at: Optional[datetime]
     profile_image_url: str
     mentionable: Optional[bool]
