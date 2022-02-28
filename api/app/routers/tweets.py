@@ -18,7 +18,7 @@ def get_latest_tweet(session: Session = Depends(get_session)):
     return session.query(models.Tweet).order_by(models.Tweet.created_at.desc()).first()
 
 
-@router.get("/{tweet_id}", response_model=schemas.Tweet)
+@router.get("/{tweet_id}", response_model=schemas.Tweet, responses={404: {"model": schemas.ErrorMessage}})
 def get_tweet(tweet_id: str, session: Session = Depends(get_session)):
     author = session.query(models.Tweet).filter(models.Tweet.id == tweet_id).one_or_none()
     if not author:
@@ -26,13 +26,13 @@ def get_tweet(tweet_id: str, session: Session = Depends(get_session)):
     return author
 
 
-@router.get("/{tweet_id}/media", response_model=List[schemas.Medium])
+@router.get("/{tweet_id}/media", response_model=List[schemas.Medium], responses={404: {"model": schemas.ErrorMessage}})
 def get_tweet_media(tweet_id: str, session: Session = Depends(get_session)):
     tweet = get_tweet(tweet_id, session)
     return session.query(models.Medium).filter(models.Medium.tweet_id == tweet.id).all()
 
 
-@router.post("", response_model=schemas.Tweet)
+@router.post("", response_model=schemas.Tweet, responses={400: {"model": schemas.ErrorMessage}})
 def create_tweet(data: schemas.Tweet, session: Session = Depends(get_session)):
     if session.query(models.Tweet).filter(models.Tweet.id == data.id).one_or_none():
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="The tweet already exists")
@@ -43,7 +43,7 @@ def create_tweet(data: schemas.Tweet, session: Session = Depends(get_session)):
     return tweet
 
 
-@router.delete("/{tweet_id}", response_model=schemas.Tweet)
+@router.delete("/{tweet_id}", response_model=schemas.Tweet, responses={404: {"model": schemas.ErrorMessage}})
 def delete_tweet(tweet_id: str, session: Session = Depends(get_session)):
     tweet = get_tweet(tweet_id, session)
     session.delete(tweet)

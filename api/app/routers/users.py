@@ -13,7 +13,7 @@ def get_users(session: Session = Depends(get_session)):
     return session.query(models.User).all()
 
 
-@router.get("/{user_id}", response_model=schemas.User)
+@router.get("/{user_id}", response_model=schemas.User, responses={404: {"model": schemas.ErrorMessage}})
 def get_user(user_id: str, session: Session = Depends(get_session)):
     user = session.query(models.User).filter(models.User.id == user_id).one_or_none()
     if not user:
@@ -21,13 +21,13 @@ def get_user(user_id: str, session: Session = Depends(get_session)):
     return user
 
 
-@router.get("/{user_id}/tweets", response_model=List[schemas.Tweet])
+@router.get("/{user_id}/tweets", response_model=List[schemas.Tweet], responses={404: {"model": schemas.ErrorMessage}})
 def get_user_tweets(user_id: str, session: Session = Depends(get_session)):
     user = get_user(user_id, session)
     return session.query(models.Tweet).filter(models.Tweet.author_id == user.id).all()
 
 
-@router.post("", response_model=schemas.User)
+@router.post("", response_model=schemas.User, responses={400: {"model": schemas.ErrorMessage}})
 def create_user(data: schemas.User, session: Session = Depends(get_session)):
     if session.query(models.User).filter(models.User.id == data.id).one_or_none():
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="The user already exists")
@@ -38,7 +38,7 @@ def create_user(data: schemas.User, session: Session = Depends(get_session)):
     return user
 
 
-@router.put("", response_model=schemas.User)
+@router.put("", response_model=schemas.User, responses={404: {"model": schemas.ErrorMessage}})
 def update_user(data: schemas.UserUpdateRequest, session: Session = Depends(get_session)):
     user = get_user(data.id, session)
     for key, value in data:
@@ -50,7 +50,7 @@ def update_user(data: schemas.UserUpdateRequest, session: Session = Depends(get_
     return user
 
 
-@router.delete("/{user_id}", response_model=schemas.User)
+@router.delete("/{user_id}", response_model=schemas.User, responses={404: {"model": schemas.ErrorMessage}})
 def delete_user(user_id: str, session: Session = Depends(get_session)):
     user = get_user(user_id, session)
     session.delete(user)
