@@ -8,6 +8,10 @@ from sqlalchemy.orm import Session
 router = APIRouter(prefix="/tweets", tags=["tweets"])
 
 
+def get_tweet_query(tweet_id: str, session: Session):
+    return session.query(models.Tweet).filter(models.Tweet.id == tweet_id).one_or_none()
+
+
 @router.get("", response_model=List[schemas.Tweet])
 def get_tweets(session: Session = Depends(get_session)):
     return session.query(models.Tweet).all()

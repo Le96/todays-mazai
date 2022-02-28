@@ -8,6 +8,10 @@ from sqlalchemy.orm import Session
 router = APIRouter(prefix="/users", tags=["users"])
 
 
+def get_user_query(user_id: str, session: Session):
+    return session.query(models.User).filter(models.User.id == user_id).one_or_none()
+
+
 @router.get("", response_model=List[schemas.User])
 def get_users(session: Session = Depends(get_session)):
     return session.query(models.User).all()

@@ -8,6 +8,10 @@ from sqlalchemy.orm import Session
 router = APIRouter(prefix="/media", tags=["media"])
 
 
+def get_medium_query(media_key: str, session: Session):
+    return session.query(models.Medium).filter(models.Medium.media_key == media_key).one_or_none()
+
+
 @router.get("", response_model=List[schemas.Medium])
 def get_media(session: Session = Depends(get_session)):
     return session.query(models.Medium).all()
