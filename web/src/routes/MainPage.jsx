@@ -6,6 +6,7 @@ import {
 
 import { getLatestTweet, getTweetMedia, getUser } from '../components/api';
 import { parseTimestamp } from '../components/utils';
+import LeaderboardGraph from '../components/LeaderboardGraph';
 
 export default function MainPage() {
   const [latestMedia, setLatestMedia] = useState(false);
@@ -84,9 +85,7 @@ export default function MainPage() {
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
-              <Typography variant="h5">
-                under construction
-              </Typography>
+              <LeaderboardGraph />
             </Box>
           </Grid>
         </Grid>

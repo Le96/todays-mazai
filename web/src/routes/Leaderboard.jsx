@@ -3,6 +3,8 @@ import {
   Box, Divider, Grid, Typography,
 } from '@mui/material';
 
+import LeaderboardGraph from '../components/LeaderboardGraph';
+
 export default function Leaderboard() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -16,9 +18,7 @@ export default function Leaderboard() {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
-              <Typography variant="h5">
-                under construction
-              </Typography>
+              <LeaderboardGraph />
             </Box>
           </Grid>
         </Grid>
