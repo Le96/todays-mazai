@@ -37,7 +37,7 @@ export default function MainPage() {
       <Divider sx={{ my: 1 }} />
       <Box sx={{ my: 1 }}>
         <Grid container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
               <Typography variant="h4">
                 Latest #TodaysMazai
@@ -78,7 +78,7 @@ export default function MainPage() {
               </Card>
             )}
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={8}>
             <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
               <Typography variant="h4">
                 Annual Leaderboard
