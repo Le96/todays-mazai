@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import {
-  Avatar,
-  Box, Card, CardContent, CardHeader, CardMedia, Divider, Grid, Link, Typography,
+  Box, Divider, Grid, Typography,
 } from '@mui/material';
 
 import { getLatestTweet, getTweetMedia, getUser } from '../components/api';
-import { parseTimestamp } from '../components/utils';
 import LeaderboardGraph from '../components/LeaderboardGraph';
+import TweetCard from '../components/TweetCard';
 
 export default function MainPage() {
   const [latestMedia, setLatestMedia] = useState(false);
   const [latestTweet, setLatestTweet] = useState(false);
   const [latestUser, setLatestUser] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  const [darkMode] = useOutletContext();
 
   useEffect(() => {
     if (loaded) return;
@@ -44,38 +46,12 @@ export default function MainPage() {
               </Typography>
             </Box>
             {latestMedia && latestTweet && latestUser && (
-              <Card variant="outlined" sx={{ maxHeight: '100%', my: 1 }}>
-                <CardHeader
-                  avatar={(
-                    <Avatar
-                      alt={latestTweet.author_name.substring(0, 1)}
-                      src={latestUser.profile_image_url}
-                    />
-                  )}
-                  subheader={(
-                    <Link
-                      color="inherit"
-                      href={`https://twitter.com/${latestUser.username}`}
-                      underline="hover"
-                    >
-                      {`@${latestTweet.author_username}`}
-                    </Link>
-                  )}
-                  title={latestTweet.author_name}
-                />
-                <CardContent>{latestTweet.text}</CardContent>
-                <CardMedia alt="#TodaysMazai Image" component="img" image={latestMedia[0].url} sx={{ height: 'auto', width: '100%' }} />
-                <CardContent>
-                  <Link
-                    color="inherit"
-                    href={`https://twitter.com/${latestUser.username}/status/${latestTweet.id}`}
-                    underline="hover"
-                    variant="subtitle2"
-                  >
-                    {parseTimestamp(latestTweet.created_at)}
-                  </Link>
-                </CardContent>
-              </Card>
+              <TweetCard
+                author={latestUser}
+                darkMode={darkMode}
+                medium={latestMedia[0]}
+                tweet={latestTweet}
+              />
             )}
           </Grid>
           <Grid item xs={8}>

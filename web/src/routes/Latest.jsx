@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import {
-  Avatar,
-  Box, Card, CardContent, CardHeader, CardMedia, Divider, Grid, Link, Typography,
+  Box, Divider, Grid, Typography,
 } from '@mui/material';
 
 import { getMedia, getTweets, getUsers } from '../components/api';
-import { parseTimestamp } from '../components/utils';
+import TweetCard from '../components/TweetCard';
 
 export default function Latest() {
   const [loaded, setLoaded] = useState(false);
@@ -45,59 +44,7 @@ export default function Latest() {
               const medium = media.find((medium_) => medium_.tweet_id === tweet.id);
               return (
                 <Grid item key={tweet.id} xs={12} sm={6} md={4} xl={3} sx={{ my: 1 }}>
-                  <Card
-                    variant="outlined"
-                    sx={{
-                      backgroundClip: 'padding-box',
-                      backgroundImage: `linear-gradient(${darkMode ? 'rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)'}), url('${medium.url}')`,
-                      backgroundPosition: 'center',
-                      backgroundSize: 'cover',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      height: '70vh',
-                    }}
-                  >
-                    <CardHeader
-                      avatar={(
-                        <Avatar
-                          alt={tweet.author_name.substring(0, 1)}
-                          src={author.profile_image_url}
-                        />
-                      )}
-                      subheader={(
-                        <Link
-                          color="inherit"
-                          href={`https://twitter.com/${author.username}`}
-                          underline="hover"
-                        >
-                          {`@${tweet.author_username}`}
-                        </Link>
-                      )}
-                      title={tweet.author_name}
-                    />
-                    <CardContent>{tweet.text}</CardContent>
-                    <Box sx={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }}>
-                      <CardMedia
-                        alt="#TodaysMazai Image"
-                        component="img"
-                        id={`image_${tweet.id}`}
-                        image={medium.url}
-                        sx={{
-                          alignSelf: 'center', justifySelf: 'center', minHeight: '100%', minWidth: '100%',
-                        }}
-                      />
-                    </Box>
-                    <CardContent>
-                      <Link
-                        color="inherit"
-                        href={`https://twitter.com/${author.username}/status/${tweet.id}`}
-                        underline="hover"
-                        variant="subtitle2"
-                      >
-                        {parseTimestamp(tweet.created_at)}
-                      </Link>
-                    </CardContent>
-                  </Card>
+                  <TweetCard author={author} darkMode={darkMode} tweet={tweet} medium={medium} />
                 </Grid>
               );
             })}
