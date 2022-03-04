@@ -5,7 +5,7 @@ import {
   Avatar, Box, Card, CardContent, CardHeader, CardMedia, Link,
 } from '@mui/material';
 
-import { parseTimestamp } from './utils';
+import { parseTimestamp, parseTweetText } from './utils';
 
 export default function TweetCard(props) {
   const {
@@ -49,7 +49,7 @@ export default function TweetCard(props) {
         )}
         title={tweet.author_name}
       />
-      <CardContent>{tweet.text}</CardContent>
+      <CardContent>{parseTweetText(tweet.text)}</CardContent>
       <Box sx={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }}>
         <CardMedia
           alt="#TodaysMazai Image"
