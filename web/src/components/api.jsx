@@ -5,6 +5,7 @@ const instance = axios.create({
 });
 
 export const getLatestTweet = async () => instance.get('/tweets/latest');
+export const getLeaderboard = async () => instance.get('/users/leaderboard');
 export const getMedia = async () => instance.get('/media');
 export const getTweetMedia = async (id) => instance.get(`/tweets/${id}/media`);
 export const getTweets = async () => instance.get('/tweets');
