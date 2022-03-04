@@ -17,12 +17,34 @@ def get_users(session: Session = Depends(get_session)):
     return session.query(models.User).all()
 
 
+@router.get("/leaderboard")
+def get_leaderboard(session: Session = Depends(get_session)):
+    users = get_users(session)
+    data = []
+    for user in users:
+        count = session.query(models.Tweet).filter(models.Tweet.author_id == user.id).count()
+        latest = get_user_latest_tweet(user.id, session)
+        data.append({"key": f"@{user.username}", "value": count, "author": user, "latest": latest})
+    data.sort(key=lambda item: (item["value"], item["latest"].created_at))
+    return data
+
+
 @router.get("/{user_id}", response_model=schemas.User, responses={404: {"model": schemas.ErrorMessage}})
 def get_user(user_id: str, session: Session = Depends(get_session)):
     user = get_user_query(user_id, session)
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No such user exists")
     return user
+
+
+@router.get("/{user_id}/latest", response_model=schemas.Tweet)
+def get_user_latest_tweet(user_id: str, session: Session = Depends(get_session)):
+    return (
+        session.query(models.Tweet)
+        .filter(models.Tweet.author_id == user_id)
+        .order_by(models.Tweet.created_at.desc())
+        .first()
+    )
 
 
 @router.get("/{user_id}/tweets", response_model=List[schemas.Tweet], responses={404: {"model": schemas.ErrorMessage}})
