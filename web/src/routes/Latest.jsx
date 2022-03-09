@@ -18,14 +18,11 @@ export default function Latest() {
   useEffect(() => {
     if (loaded) return;
     setLoaded(true);
-    (async () => {
-      const newMedia = await getMedia();
-      setMedia(newMedia.data);
-      const newTweets = await getTweets();
-      setTweets(newTweets.data);
-      const newUsers = await getUsers();
-      setUsers(newUsers.data);
-    })();
+    Promise.all([
+      getMedia().then((response) => setMedia(response.data)),
+      getTweets().then((response) => setTweets(response.data)),
+      getUsers().then((response) => setUsers(response.data)),
+    ]);
   }, [loaded]);
 
   return (
