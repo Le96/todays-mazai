@@ -20,12 +20,12 @@ export default function MainPage() {
     if (loaded) return;
     setLoaded(true);
     (async () => {
-      const newLatestTweet = await getLatestTweet();
-      setLatestTweet(newLatestTweet.data);
-      const newLatestMedia = await getTweetMedia(newLatestTweet.data.id);
-      setLatestMedia(newLatestMedia.data);
-      const newLatestUser = await getUser(newLatestTweet.data.author_id);
-      setLatestUser(newLatestUser.data);
+      const newLatestTweet = await getLatestTweet().then((response) => response.data);
+      setLatestTweet(newLatestTweet);
+      Promise.all([
+        getTweetMedia(newLatestTweet.id).then((response) => setLatestMedia(response.data)),
+        getUser(newLatestTweet.author_id).then((response) => setLatestUser(response.data)),
+      ]);
     })();
   }, [loaded]);
 

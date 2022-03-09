@@ -14,10 +14,7 @@ export default function LeaderboardGraph() {
   useEffect(() => {
     if (loaded) return;
     setLoaded(true);
-    (async () => {
-      const newLeaderboardData = await getLeaderboard();
-      setLeaderboardData(newLeaderboardData.data);
-    })();
+    getLeaderboard().then((response) => setLeaderboardData(response.data));
   }, [loaded]);
 
   return (
