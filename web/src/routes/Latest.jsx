@@ -28,7 +28,7 @@ export default function Latest() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ my: 1 }}>
-        <Typography variant="h3">
+        <Typography noWrap variant="h3">
           Latest #TodaysMazai
         </Typography>
       </Box>

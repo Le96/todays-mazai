@@ -32,7 +32,7 @@ export default function MainPage() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ my: 1 }}>
-        <Typography variant="h3">
+        <Typography noWrap variant="h3">
           Main Page
         </Typography>
       </Box>
@@ -41,7 +41,7 @@ export default function MainPage() {
         <Grid container spacing={2}>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
-              <Typography variant="h4">
+              <Typography noWrap variant="h4">
                 Latest #TodaysMazai
               </Typography>
             </Box>
@@ -56,7 +56,7 @@ export default function MainPage() {
           </Grid>
           <Grid item xs={8}>
             <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
-              <Typography variant="h4">
+              <Typography noWrap variant="h4">
                 Annual Leaderboard
               </Typography>
             </Box>
