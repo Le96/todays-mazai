@@ -1,11 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
+import CloseIcon from '@mui/icons-material/Close';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import {
   Box, Button, Dialog, DialogTitle, IconButton,
 } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 export default function LoginDialog(props) {
   const { open, setOpen } = props;

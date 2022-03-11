@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
 import {
   Box, Divider, Grid, Typography,
 } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
-import { getMedia, getTweets, getUsers } from '../components/api';
 import TweetCard from '../components/TweetCard';
+import { getMedia, getTweets, getUsers } from '../components/api';
 
 export default function Latest() {
   const [loaded, setLoaded] = useState(false);

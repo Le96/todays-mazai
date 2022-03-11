@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
 import {
   Box, Divider, Grid, Typography,
 } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
-import { getLatestTweet, getTweetMedia, getUser } from '../components/api';
 import LeaderboardGraph from '../components/LeaderboardGraph';
 import TweetCard from '../components/TweetCard';
+import { getLatestTweet, getTweetMedia, getUser } from '../components/api';
 
 export default function MainPage() {
   const [latestMedia, setLatestMedia] = useState(false);

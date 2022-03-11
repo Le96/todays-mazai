@@ -1,5 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import FiberNewIcon from '@mui/icons-material/FiberNew';
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
+import LeaderBoardIcon from '@mui/icons-material/Leaderboard';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   Box,
   Button,
@@ -16,15 +23,8 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import FiberNewIcon from '@mui/icons-material/FiberNew';
-import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
-import LeaderBoardIcon from '@mui/icons-material/Leaderboard';
-import MenuIcon from '@mui/icons-material/Menu';
+import React, { useEffect, useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import AppBar from '../components/AppBar';
 import DrawerHeader from '../components/DrawerHeader';

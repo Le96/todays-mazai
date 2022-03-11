@@ -1,7 +1,7 @@
-import React from 'react';
 import {
   Box, Divider, Grid, Typography,
 } from '@mui/material';
+import React from 'react';
 
 import LeaderboardGraph from '../components/LeaderboardGraph';
 

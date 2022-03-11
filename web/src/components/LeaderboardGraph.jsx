@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { Animation } from '@devexpress/dx-react-chart';
 import {
   ArgumentAxis, BarSeries, Chart, Title, ValueAxis,
 } from '@devexpress/dx-react-chart-material-ui';
 import { Paper } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
 import { getLeaderboard } from './api';
 
