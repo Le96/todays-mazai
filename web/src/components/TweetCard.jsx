@@ -41,6 +41,8 @@ export default function TweetCard(props) {
           <Link
             color="inherit"
             href={`https://twitter.com/intent/user?user_id=${author.id}`}
+            rel="noreferrer"
+            target="_blank"
             underline="hover"
           >
             {`@${tweet.author_username}`}
@@ -66,6 +68,8 @@ export default function TweetCard(props) {
         <Link
           color="inherit"
           href={`https://twitter.com/twitter/status/${tweet.id}`}
+          rel="noreferrer"
+          target="_blank"
           underline="hover"
           variant="subtitle2"
         >
