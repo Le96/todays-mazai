@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 import {
   Avatar, Box, Card, CardContent, CardHeader, CardMedia, Link,
 } from '@mui/material';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import { parseTimestamp, parseTweetText } from './utils';
 
