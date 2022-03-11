@@ -48,7 +48,9 @@ export default function TweetCard(props) {
         )}
         title={tweet.author_name}
       />
-      <CardContent>{parseTweetText(tweet.text)}</CardContent>
+      <CardContent>
+        {parseTweetText(tweet.text)}
+      </CardContent>
       <Box sx={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }}>
         <CardMedia
           alt="#TodaysMazai Image"
