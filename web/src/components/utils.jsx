@@ -3,10 +3,18 @@ import parse, { domToReact } from 'html-react-parser';
 import React from 'react';
 import twitter from 'twitter-text';
 
-// TODO: local timezone
 export const parseTimestamp = (timestamp) => {
-  const ts = new Date(timestamp);
-  return `${ts.getFullYear()}/${(ts.getMonth() + 1).toString().padStart(2, '0')}/${ts.getDate().toString().padStart(2, '0')} ${ts.getHours().toString().padStart(2, '0')}:${ts.getMinutes().toString().padStart(2, '0')}:${ts.getSeconds().toString().padStart(2, '0')} UTC`;
+  const utcDate = new Date(`${timestamp}Z`);
+  if (Number.isNaN(utcDate)) return null;
+  const [year, month, day, hour, minute, second] = [
+    utcDate.getFullYear(),
+    (utcDate.getMonth() + 1).toString().padStart(2, '0'),
+    utcDate.getDate().toString().padStart(2, '0'),
+    utcDate.getHours().toString().padStart(2, '0'),
+    utcDate.getMinutes().toString().padStart(2, '0'),
+    utcDate.getSeconds().toString().padStart(2, '0'),
+  ];
+  return `${year}/${month}/${day} ${hour}:${minute}:${second}`;
 };
 
 export const parseTweetText = (text) => {
