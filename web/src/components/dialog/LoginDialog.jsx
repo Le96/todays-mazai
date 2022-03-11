@@ -9,6 +9,7 @@ import React from 'react';
 export default function LoginDialog(props) {
   const { open, setOpen } = props;
 
+  // eslint-disable-next-line
   const handleClick = () => window.alert(
     'Twitter login function is not yet implemented. '
     + 'Please wait a little longer.',

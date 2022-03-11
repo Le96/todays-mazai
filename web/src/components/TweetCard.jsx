@@ -41,6 +41,8 @@ export default function TweetCard(props) {
           <Link
             color="inherit"
             href={`https://twitter.com/intent/user?user_id=${author.id}`}
+            rel="noreferrer"
+            target="_blank"
             underline="hover"
           >
             {`@${tweet.author_username}`}
@@ -48,7 +50,9 @@ export default function TweetCard(props) {
         )}
         title={tweet.author_name}
       />
-      <CardContent>{parseTweetText(tweet.text)}</CardContent>
+      <CardContent>
+        {parseTweetText(tweet.text)}
+      </CardContent>
       <Box sx={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }}>
         <CardMedia
           alt="#TodaysMazai Image"
@@ -64,6 +68,8 @@ export default function TweetCard(props) {
         <Link
           color="inherit"
           href={`https://twitter.com/twitter/status/${tweet.id}`}
+          rel="noreferrer"
+          target="_blank"
           underline="hover"
           variant="subtitle2"
         >
