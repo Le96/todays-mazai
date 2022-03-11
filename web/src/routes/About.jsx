@@ -7,7 +7,7 @@ export default function About() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ my: 1 }}>
-        <Typography variant="h3">
+        <Typography noWrap variant="h3">
           About
         </Typography>
       </Box>

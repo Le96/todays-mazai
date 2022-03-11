@@ -17,17 +17,15 @@ export default function LeaderboardGraph() {
     getLeaderboard().then((response) => setLeaderboard(response.data));
   }, [loaded]);
 
-  return (
+  return leaderboard && (
     <Paper variant="outlined" sx={{ flexGrow: 1 }}>
-      {leaderboard && (
-        <Chart data={leaderboard} rotated>
-          <ArgumentAxis />
-          <ValueAxis />
-          <BarSeries argumentField="key" color="green" valueField="value" />
-          <Title text="Top Mazaists" />
-          <Animation />
-        </Chart>
-      )}
+      <Chart data={leaderboard} rotated>
+        <ArgumentAxis />
+        <ValueAxis />
+        <BarSeries argumentField="key" color="green" valueField="value" />
+        <Title text="Top Mazaists" />
+        <Animation />
+      </Chart>
     </Paper>
   );
 }
