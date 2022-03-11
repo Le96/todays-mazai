@@ -1,4 +1,19 @@
 {
+    "cSpell.words": [
+        "airbnb",
+        "browserslist",
+        "devexpress",
+        "Leaderboard",
+        "Mazai",
+        "Mazaists",
+        "pipenv",
+        "psycopg",
+        "pydantic",
+        "traefik",
+        "tweepy",
+        "Twemoji",
+        "VENV"
+    ],
     "python.formatting.provider": "black",
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
