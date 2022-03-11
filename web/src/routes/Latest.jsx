@@ -40,7 +40,7 @@ export default function Latest() {
               const author = users.find((user) => user.id === tweet.author_id);
               const medium = media.find((medium_) => medium_.tweet_id === tweet.id);
               return (
-                <Grid item key={tweet.id} xs={12} sm={6} md={4} xl={3} sx={{ my: 1 }}>
+                <Grid item key={tweet.id} xs={12} sm={6} md={4} lg={3} sx={{ my: 1 }}>
                   <TweetCard author={author} darkMode={darkMode} tweet={tweet} medium={medium} />
                 </Grid>
               );
