@@ -326,11 +326,11 @@
         },
         "tweepy": {
             "hashes": [
-                "sha256:87f7ea18bdaf5896158b17e677b271c9b9772eb8917ae895895d77783b6d3176",
-                "sha256:bd1f06755ed0a115b106bff0f8c8df0a85f9431b898de555abb9ef96aa65439f"
+                "sha256:82323505d549e3868e14a4570fc069ab3058ef95f9e578d1476d69bf2c831483",
+                "sha256:d7e78c49232e849b660d82c7c2e504e8487d8014dcb73b39b490b61827965aba"
             ],
             "index": "pypi",
-            "version": "==4.6.0"
+            "version": "==4.7.0"
         },
         "typing-extensions": {
             "hashes": [
