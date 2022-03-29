@@ -707,11 +707,11 @@
         },
         "types-requests": {
             "hashes": [
-                "sha256:5d6f77f3c7565659bdb7b7bce1d33d1abb7d0b056138cac714860e13da2f19df",
-                "sha256:cf0646031dd6307113b37814f743c04f0707a3357378c2bb1326f848412f5ba9"
+                "sha256:2d371183c535208d2cc8fe7473d9b49c344c7077eb70302eb708638fb86086a8",
+                "sha256:77d09182a68e447e9e8b0ffc21abf54618b96f07689dffbb6a41cf0356542969"
             ],
             "index": "pypi",
-            "version": "==2.27.13"
+            "version": "==2.27.15"
         },
         "types-urllib3": {
             "hashes": [
