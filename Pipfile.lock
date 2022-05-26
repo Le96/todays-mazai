@@ -709,11 +709,11 @@
         },
         "types-requests": {
             "hashes": [
-                "sha256:2437a5f4d16c0c8bd7539a8126d492b7aeb41e6cda670d76b286c7f83a658d42",
-                "sha256:c8010c18b291a7efb60b1452dbe12530bc25693dd657e70c62803fcdc4bffe9b"
+                "sha256:6d8463ffe1f6edcf2e5361740a6140e7a16d427c267d83c7c1d3d1298f4e67c5",
+                "sha256:d618d9809fa32f514cf17cea8460814da671c56366fb1c908accca8bf183112b"
             ],
             "index": "pypi",
-            "version": "==2.27.16"
+            "version": "==2.27.27"
         },
         "types-urllib3": {
             "hashes": [
