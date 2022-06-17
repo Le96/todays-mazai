@@ -5,7 +5,7 @@
   "dependencies": {
     "@devexpress/dx-react-chart": "^3.0.2",
     "@devexpress/dx-react-chart-material-ui": "^3.0.3",
-    "@emotion/react": "^11.9.0",
+    "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.3",
     "@mui/material": "^5.8.3",
