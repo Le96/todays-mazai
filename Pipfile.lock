@@ -655,11 +655,11 @@
         },
         "pyproject-flake8": {
             "hashes": [
-                "sha256:1a8f94e18d08677ee780625049d9d00a9ee823661c6606caab8a383351037a75",
-                "sha256:8ed9453f1d984cfe94c998f9840275359e29e7f435b8ddd188ae084e2dc1270c"
+                "sha256:22542080ba90d4bd80ee060852db15a24aeea61c9a29ed7c16f5b59b0e47a03a",
+                "sha256:c843d760c49d7b270e9abda58a57765c031918a9d10da25aa43572f5d77cac43"
             ],
             "index": "pypi",
-            "version": "==0.0.1a4"
+            "version": "==0.0.1a5"
         },
         "setuptools": {
             "hashes": [
@@ -689,7 +689,7 @@
                 "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
                 "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
             ],
-            "markers": "python_full_version < '3.11.0a7'",
+            "markers": "python_version < '3.11'",
             "version": "==2.0.1"
         },
         "tomlkit": {
