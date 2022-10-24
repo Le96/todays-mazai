@@ -340,11 +340,11 @@
         },
         "tweepy": {
             "hashes": [
-                "sha256:0a21396b646af4fcee69762d2908c104e1fe2e2c4e1dfd6e6078a41b38771382",
-                "sha256:310193775d7fc381abd6f37021a9af27f7e9edfcce5ec51bd73ea5f30c21fa61"
+                "sha256:34009393c4b88df09311a0951d87fb15c583dc6eaab65fc04cce64118a46fb16",
+                "sha256:bec6a4583484f9a16706bb24120423e247b62604a2749e42444bd9aabe72da64"
             ],
             "index": "pypi",
-            "version": "==4.10.1"
+            "version": "==4.11.0"
         },
         "typing-extensions": {
             "hashes": [
@@ -443,11 +443,11 @@
         },
         "dill": {
             "hashes": [
-                "sha256:33501d03270bbe410c72639b350e941882a8b0fd55357580fbc873fba0c59302",
-                "sha256:d75e41f3eff1eee599d738e76ba8f4ad98ea229db8b085318aa2b3333a208c86"
+                "sha256:a07ffd2351b8c678dfc4a856a3005f8067aea51d6ba6c700796a4d9e280f39f0",
+                "sha256:e5db55f3687856d8fbdab002ed78544e1c4559a130302693d839dfe8f93f2373"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6'",
-            "version": "==0.3.5.1"
+            "markers": "python_version >= '3.7'",
+            "version": "==0.3.6"
         },
         "executing": {
             "hashes": [
